@@ -1,0 +1,1 @@
+SELECT user.user_id, user.first_name, user.last_name, test_result.test_id, AVG(test_result.correct), MAX(test_result.time_taken)  FROM `user` LEFT JOIN test_result ON user.user_id=test_result.user_id GROUP BY test_result.user_id ORDER by user.user_id
