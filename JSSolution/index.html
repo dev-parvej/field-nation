@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animation-FieldNation</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .blue-box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            left:0;
+            top: 50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="blue-box" class="blue-box"></div>
+</body>
+<script>
+    setInterval(() => {
+        const blue_box_element = document.getElementById('blue-box'),
+            blue_box = blue_box_element.getBoundingClientRect(),
+            move = 10;
+
+        const go_right = ((blue_box.right + move) <= window.innerWidth);
+        const go_bottom = ((blue_box.bottom + move) <= window.innerHeight);
+
+        if( go_right && go_bottom) {
+            blue_box_element.style.top = (blue_box.top + move) + "px";
+            blue_box_element.style.left = (blue_box.left + move) + "px";
+        } else if( !go_right && go_bottom ) {
+            blue_box_element.style.top = (blue_box.top + move) + "px";
+            blue_box_element.style.left = (blue_box.left - move) + "px";
+        } else if( go_right && !go_bottom ) {
+            blue_box_element.style.top = (blue_box.top-move) + "px";
+            blue_box_element.style.left = (blue_box.left+move) + "px";
+        } else {
+            blue_box_element.style.top = (blue_box.top-move) + "px";
+            blue_box_element.style.left = (blue_box.left-move) + "px";
+        }
+    }, 1000);
+</script>
+</html>
